@@ -15,7 +15,7 @@ Kelas ditujukan bagi developer yang ingin belajar fundamental pembuatan aplikasi
    - Buka terminal atau command prompt di komputer lokal Anda.
    - Gunakan perintah **git clone** diikuti dengan URL yang telah Anda salin.
      ```
-     git clone https://github.com/robbyyehezkiel/Dicoding-Android-Fundamental-Awal.git
+     git clone https://github.com/robbyyehezkiel/Dicoding-Android-Fundamental-Akhir.git
      ```
 3. Buka Proyek di Android Studio:<br>
    Buka Android Studio dan buka proyek yang telah Anda kloning.
