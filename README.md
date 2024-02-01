@@ -1,5 +1,5 @@
 # Dicoding-Android-Fundamental-Akhir
-Dicoding Android Fundamental Awal adalah aplikasi yang harus disubmit dalam menyelesaikan kelas [Belajar Fundamental Aplikasi Android](https://www.dicoding.com/academies/14/)
+Dicoding Android Fundamental Akhir adalah aplikasi yang harus disubmit dalam menyelesaikan kelas [Belajar Fundamental Aplikasi Android](https://www.dicoding.com/academies/14/)
 Kelas ditujukan bagi developer yang ingin belajar fundamental pembuatan aplikasi Android, seperti networking dan database, dengan mengacu pada standar kompetensi internasional milik Google Developers Authorized Training Partner. 
 
 ## SCREENSHOT!
