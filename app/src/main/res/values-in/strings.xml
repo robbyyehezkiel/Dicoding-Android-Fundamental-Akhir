@@ -1,0 +1,25 @@
+<resources>
+    <string name="app_name">Fundamental Android</string>
+
+    <!-- Menu Utama -->
+    <string name="search">Cari</string>
+    <string name="favorite">Favorit</string>
+    <string name="setting">Pengaturan</string>
+
+    <!-- Detail Pengguna -->
+    <string name="toolbar_user_detail">Detail Pengguna</string>
+    <string name="name">Nama</string>
+    <string name="username">Nama Pengguna</string>
+    <string name="num1">ABC</string>
+    <string name="num2">XYZ</string>
+    <string name="followers">Pengikut</string>
+    <string name="following">Mengikuti</string>
+    <string name="floating_icon">Ikon Mengambang</string>
+
+    <!-- Pengguna Favorit -->
+    <string name="toolbar_favorite_user">Pengguna Favorit</string>
+
+    <!-- Pengaturan -->
+    <string name="theme">Mode Gelap</string>
+    <string name="language">Ganti Bahasa</string>
+</resources>

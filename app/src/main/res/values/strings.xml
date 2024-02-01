@@ -1,0 +1,25 @@
+<resources>
+    <string name="app_name">Android Fundamental</string>
+
+    <!-- Main Menu -->
+    <string name="search">Search</string>
+    <string name="favorite">Favorite</string>
+    <string name="setting">Setting</string>
+
+    <!-- User Detail -->
+    <string name="toolbar_user_detail">User Detail</string>>
+    <string name="name">Name</string>
+    <string name="username">Username</string>
+    <string name="num1">ABC</string>
+    <string name="num2">XYZ</string>
+    <string name="followers">Followers</string>
+    <string name="following">Following</string>
+    <string name="floating_icon">Floating Icon</string>
+
+    <!-- Favorite User -->
+    <string name="toolbar_favorite_user">Favorite Users</string>
+
+    <!-- Settings -->
+    <string name="theme">Dark Mode</string>
+    <string name="language">Change Language</string>
+</resources>
