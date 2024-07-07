@@ -60,7 +60,7 @@ class FavoriteActivity : AppCompatActivity() {
         viewModel.favoriteUsers.observe(this) { users ->
             userAdapter.submitList(users)
         }
-        viewModel.isLoadingState.observe(this) { isLoading ->
+        viewModel.isLoading.observe(this) { isLoading ->
             binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
         }
 

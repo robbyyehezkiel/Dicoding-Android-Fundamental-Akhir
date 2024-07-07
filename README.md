@@ -17,16 +17,16 @@ Kelas ditujukan bagi developer yang ingin belajar fundamental pembuatan aplikasi
      ```
      git clone https://github.com/robbyyehezkiel/Dicoding-Android-Fundamental-Akhir.git
      ```
-3. Buka Proyek di Android Studio:<br>
+2. Buka Proyek di Android Studio:<br>
    Buka Android Studio dan buka proyek yang telah Anda kloning.
-4. Bangun Proyek:<br>
+3. Bangun Proyek:<br>
    Setelah proyek dimuat, bangun proyek menggunakan opsi **build** di Android Studio.
-5. Hubungkan Perangkat Anda:<br>
+4. Hubungkan Perangkat Anda:<br>
    Hubungkan perangkat Android Anda ke komputer menggunakan kabel USB dan pastikan debugging USB diaktifkan pada perangkat Anda.
-7. Jalankan Aplikasi:
+5. Jalankan Aplikasi:
    - Pilih perangkat yang terhubung dari daftar perangkat yang tersedia di Android Studio.
    - Klik tombol **Run** untuk menginstal dan meluncurkan aplikasi di perangkat Anda.
-8. Atau, Gunakan Emulator:<br>
+6. Atau, Gunakan Emulator:<br>
    Jika Anda tidak memiliki perangkat fisik, Anda dapat menggunakan Emulator Android yang disediakan oleh Android Studio. Cukup buat perangkat virtual menggunakan AVD Manager dan jalankan aplikasi di emulator.
 
 ## KRITERIA SUBMISSION APLIKASI

@@ -29,9 +29,7 @@ class UserDetailViewModel(
                 val userDetails = withContext(Dispatchers.IO) {
                     gitHubRepository.getUserDetail(username)
                 }
-                if (_userDetail.value != userDetails) {
-                    _userDetail.postValue(userDetails)
-                }
+                _userDetail.postValue(userDetails)
             } catch (e: Exception) {
                 handleException(e)
             } finally {
@@ -42,8 +40,10 @@ class UserDetailViewModel(
 
     fun checkFavoriteUserStatus(username: String) {
         viewModelScope.launch {
-            val favoriteUsers = favoriteUserRepository.getFavoriteUsers()
-            _isFavoriteUser.value = favoriteUsers.any { it.login == username }
+            favoriteUserRepository.getFavoriteUsers()
+                .collect { favoriteUsers ->
+                    _isFavoriteUser.value = favoriteUsers.any { it.login == username }
+                }
         }
     }
 

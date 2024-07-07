@@ -11,6 +11,8 @@ import androidx.lifecycle.lifecycleScope
 import com.robbyyehezkiel.androidfundamental2.R
 import com.robbyyehezkiel.androidfundamental2.databinding.ActivitySettingBinding
 import com.robbyyehezkiel.androidfundamental2.utils.dataStore
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
@@ -19,6 +21,14 @@ class SettingActivity : AppCompatActivity() {
 
     private var _binding: ActivitySettingBinding? = null
     private val binding get() = _binding!!
+
+    private val themeKey = stringPreferencesKey("theme")
+    private val themeFlow = dataStore.data.map { preferences ->
+        preferences[themeKey] ?: "light"
+    }
+
+    private val debouncePeriod = 300L // milliseconds
+    private var themeChangeJob: Job? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,10 +52,18 @@ class SettingActivity : AppCompatActivity() {
     }
 
     private fun setupThemeSwitch() {
-        binding.switchButton.setOnCheckedChangeListener { _, isChecked ->
-            saveThemeMode(if (isChecked) "dark" else "light")
+        lifecycleScope.launch {
+            val themeMode = themeFlow.first()
+            binding.switchButton.isChecked = themeMode == "dark"
         }
-        loadThemeMode()
+
+        binding.switchButton.setOnCheckedChangeListener { _, isChecked ->
+            themeChangeJob?.cancel() // cancel any ongoing theme change job
+            themeChangeJob = lifecycleScope.launch {
+                delay(debouncePeriod)
+                saveThemeMode(if (isChecked) "dark" else "light")
+            }
+        }
     }
 
     private fun setupLanguageButton() {
@@ -59,25 +77,9 @@ class SettingActivity : AppCompatActivity() {
         return true
     }
 
-    private fun loadThemeMode() {
-        val themeKey = stringPreferencesKey("theme")
-        val themeFlow = dataStore.data.map { preferences ->
-            preferences[themeKey] ?: "light"
-        }
-
-        lifecycleScope.launch {
-            val themeMode = themeFlow.first()
-            binding.switchButton.isChecked = themeMode == "dark"
-            applyTheme(themeMode)
-        }
-    }
-
-    private fun saveThemeMode(themeMode: String) {
-        val themeKey = stringPreferencesKey("theme")
-        lifecycleScope.launch {
-            dataStore.edit { preferences ->
-                preferences[themeKey] = themeMode
-            }
+    private suspend fun saveThemeMode(themeMode: String) {
+        dataStore.edit { preferences ->
+            preferences[themeKey] = themeMode
         }
         applyTheme(themeMode)
     }

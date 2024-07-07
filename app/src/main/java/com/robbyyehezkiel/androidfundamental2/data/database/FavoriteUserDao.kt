@@ -6,6 +6,7 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.robbyyehezkiel.androidfundamental2.data.model.FavoriteUser
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface FavoriteUserDao {
@@ -16,5 +17,5 @@ interface FavoriteUserDao {
     suspend fun removeFavoriteUser(user: FavoriteUser)
 
     @Query("SELECT * FROM favorite_users")
-    suspend fun getFavoriteUsers(): List<FavoriteUser>
+    fun getFavoriteUsers(): Flow<List<FavoriteUser>>
 }

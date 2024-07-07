@@ -4,9 +4,11 @@ import androidx.appcompat.app.AppCompatDelegate
 
 object ThemeManager {
     fun applyTheme(themeMode: String) {
-        when (themeMode) {
-            "light" -> AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-            "dark" -> AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+        val nightMode = when (themeMode) {
+            "light" -> AppCompatDelegate.MODE_NIGHT_NO
+            "dark" -> AppCompatDelegate.MODE_NIGHT_YES
+            else -> AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM
         }
+        AppCompatDelegate.setDefaultNightMode(nightMode)
     }
 }

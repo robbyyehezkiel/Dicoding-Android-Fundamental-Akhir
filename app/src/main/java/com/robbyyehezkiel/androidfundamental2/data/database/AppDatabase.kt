@@ -6,7 +6,7 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.robbyyehezkiel.androidfundamental2.data.model.FavoriteUser
 
-@Database(entities = [FavoriteUser::class], version = 1)
+@Database(entities = [FavoriteUser::class], version = 1, exportSchema = false)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun favoriteUserDao(): FavoriteUserDao
 
@@ -27,6 +27,5 @@ abstract class AppDatabase : RoomDatabase() {
                 instance
             }
         }
-
     }
 }
