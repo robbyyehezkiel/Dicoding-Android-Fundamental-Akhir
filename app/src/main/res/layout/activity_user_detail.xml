@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="?attr/colorSurface"
     tools:context=".ui.view.UserDetailActivity">
 
     <de.hdodenhof.circleimageview.CircleImageView
@@ -59,7 +60,6 @@
             tools:text="@string/num1" />
 
         <TextView
-            android:id="@+id/tv_following"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
@@ -77,7 +77,6 @@
             tools:text="@string/num2" />
 
         <TextView
-            android:id="@+id/tv_followers"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
@@ -95,7 +94,7 @@
         app:layout_constraintTop_toBottomOf="@id/linearLayout"
         app:tabGravity="fill"
         app:tabMode="fixed"
-        app:tabSelectedTextColor="?attr/colorOnSurface"
+        app:tabSelectedTextColor="?attr/colorPrimary"
         app:tabTextColor="?attr/colorOnSurface" />
 
     <androidx.viewpager2.widget.ViewPager2

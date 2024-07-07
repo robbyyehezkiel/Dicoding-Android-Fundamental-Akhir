@@ -6,6 +6,7 @@ import androidx.lifecycle.viewModelScope
 import com.robbyyehezkiel.androidfundamental2.data.model.User
 import com.robbyyehezkiel.androidfundamental2.data.repository.FavoriteUserRepository
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class FavoriteViewModel(private val repository: FavoriteUserRepository) : BaseViewModel() {
 
@@ -17,20 +18,29 @@ class FavoriteViewModel(private val repository: FavoriteUserRepository) : BaseVi
     }
 
     private fun loadFavoriteUsers() {
-        isLoading.value = true
+        setLoadingState(true)
         viewModelScope.launch(exceptionHandler) {
-            val favoriteUsers = repository.getFavoriteUsers().map { user ->
-                User(
-                    user.login,
-                    user.avatarUrl,
-                    user.name,
-                    user.followers,
-                    user.following
-                )
+            try {
+                val favoriteUsers = withContext(dispatcherIO) {
+                    repository.getFavoriteUsers().map { user ->
+                        User(
+                            user.login,
+                            user.avatarUrl,
+                            user.name,
+                            user.followers,
+                            user.following
+                        )
+                    }
+                }
+                _favoriteUsers.value = favoriteUsers
+                if (favoriteUsers.isEmpty()) {
+                    showSnackBarMessage("No favorite users found.")
+                }
+            } catch (e: Exception) {
+                handleException(e)
+            } finally {
+                setLoadingState(false)
             }
-            _favoriteUsers.value = favoriteUsers
-        }.invokeOnCompletion {
-            isLoading.value = false
         }
     }
 }

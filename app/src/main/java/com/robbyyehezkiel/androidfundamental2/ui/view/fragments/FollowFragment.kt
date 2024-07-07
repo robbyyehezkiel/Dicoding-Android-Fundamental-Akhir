@@ -45,10 +45,12 @@ class FollowFragment(private val isFollowing: Boolean) : Fragment() {
         } else {
             setupViews()
             setupViewModel()
-            if (isFollowing) {
-                viewModel.getUserFollowing(username!!)
-            } else {
-                viewModel.getUserFollowers(username!!)
+            username?.let {
+                if (isFollowing) {
+                    viewModel.getUserFollowing(it)
+                } else {
+                    viewModel.getUserFollowers(it)
+                }
             }
             observeViewModel()
         }
@@ -62,8 +64,9 @@ class FollowFragment(private val isFollowing: Boolean) : Fragment() {
     private fun setupViews() {
         binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
         adapter = UserAdapter { user ->
-            val intent = Intent(requireContext(), UserDetailActivity::class.java)
-            intent.putExtra("USERNAME", user.login)
+            val intent = Intent(requireContext(), UserDetailActivity::class.java).apply {
+                putExtra("USERNAME", user.login)
+            }
             startActivity(intent)
         }
         binding.recyclerView.adapter = adapter
@@ -95,7 +98,7 @@ class FollowFragment(private val isFollowing: Boolean) : Fragment() {
             }
 
             errorState.observe(viewLifecycleOwner) { error ->
-                showErrorSnackBar(error)
+                error?.let { showErrorSnackBar(it) }
             }
 
             isLoadingState.observe(viewLifecycleOwner) { isLoading ->

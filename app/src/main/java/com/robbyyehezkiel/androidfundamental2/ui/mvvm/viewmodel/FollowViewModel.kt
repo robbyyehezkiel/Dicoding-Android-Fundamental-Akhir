@@ -5,7 +5,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.robbyyehezkiel.androidfundamental2.data.model.User
 import com.robbyyehezkiel.androidfundamental2.data.repository.GitHubRepository
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
@@ -21,28 +20,42 @@ class FollowViewModel(private val repository: GitHubRepository) : BaseViewModel(
     val followingError: LiveData<Boolean> = _followingError
 
     fun getUserFollowing(username: String) {
-        isLoading.value = true
+        setLoadingState(true)
         viewModelScope.launch(exceptionHandler) {
-            val userFollowing = withContext(Dispatchers.IO) {
-                repository.getUserFollowing(username)
+            try {
+                val userFollowing = withContext(dispatcherIO) {
+                    repository.getUserFollowing(username)
+                }
+                _user.postValue(userFollowing)
+                if (userFollowing.isEmpty()) {
+                    _followingError.postValue(true)
+                    showSnackBarMessage("No following users found.")
+                }
+            } catch (e: Exception) {
+                handleException(e)
+            } finally {
+                setLoadingState(false)
             }
-            _user.value = userFollowing
-            _followingError.value = userFollowing.isEmpty()
-        }.invokeOnCompletion {
-            isLoading.value = false
         }
     }
 
     fun getUserFollowers(username: String) {
-        isLoading.value = true
+        setLoadingState(true)
         viewModelScope.launch(exceptionHandler) {
-            val userFollowers = withContext(Dispatchers.IO) {
-                repository.getUserFollowers(username)
+            try {
+                val userFollowers = withContext(dispatcherIO) {
+                    repository.getUserFollowers(username)
+                }
+                _user.postValue(userFollowers)
+                if (userFollowers.isEmpty()) {
+                    _followersError.postValue(true)
+                    showSnackBarMessage("No followers found.")
+                }
+            } catch (e: Exception) {
+                handleException(e)
+            } finally {
+                setLoadingState(false)
             }
-            _user.value = userFollowers
-            _followersError.value = userFollowers.isEmpty()
-        }.invokeOnCompletion {
-            isLoading.value = false
         }
     }
 }

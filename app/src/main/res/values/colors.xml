@@ -1,16 +1,20 @@
 <resources>
-    <!-- Light Theme Colors -->
-    <color name="my_light_primary">#1976D2</color>
-    <color name="my_light_primary_variant">#1565C0</color>
-    <color name="my_light_on_primary">#FFFFFF</color>
-    <color name="my_light_secondary">#FF5722</color>
-    <color name="my_light_secondary_variant">#E64A19</color>
-    <color name="my_light_on_secondary">#FFFFFF</color>
-    <color name="my_light_background">#FFFFFF</color>
+    <color name="my_light_primary">#1E88E5</color> <!-- New Primary Color -->
+    <color name="my_light_on_primary">#FFFFFF</color> <!-- On Primary Color -->
+    <color name="my_light_secondary">#03DAC6</color>
+    <color name="my_light_on_secondary">#000000</color>
     <color name="my_light_surface">#FFFFFF</color>
-    <color name="my_light_on_background">#000000</color>
     <color name="my_light_on_surface">#000000</color>
     <color name="my_light_error">#B00020</color>
     <color name="my_light_on_error">#FFFFFF</color>
-    <!-- Add more custom colors as needed -->
+
+
+    <color name="my_dark_primary">#1E88E5</color> <!-- New Primary Color -->
+    <color name="my_dark_on_primary">#FFFFFF</color> <!-- On Primary Color -->
+    <color name="my_dark_secondary">#03DAC6</color>
+    <color name="my_dark_on_secondary">#000000</color>
+    <color name="my_dark_surface">#121212</color>
+    <color name="my_dark_on_surface">#FFFFFF</color>
+    <color name="my_dark_error">#CF6679</color>
+    <color name="my_dark_on_error">#000000</color>
 </resources>
